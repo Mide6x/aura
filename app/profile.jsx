@@ -1,16 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import React from "react";
 
-export default function index() {
+const profile = () => {
   return (
     <View style={styles.container}>
-      <Text>Aura</Text>
-      <StatusBar style="auto" />
-      <Link href="profile">Go to profile</Link>
+      <Text>profile</Text>
     </View>
   );
-}
+};
+
+export default profile;
 
 const styles = StyleSheet.create({
   container: {
