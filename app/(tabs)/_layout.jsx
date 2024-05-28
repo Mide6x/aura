@@ -2,17 +2,22 @@ import { Text, View, Image } from "react-native";
 import React from "react";
 import { Tabs, Redirect } from "expo-router";
 import { icons } from "../../constants";
-import Home from "./home";
 
 const TabIcon = ({ name, icon, color, focused }) => {
   return (
-    <View>
+    <View className="items-center justify-center gap-2">
       <Image
         source={icon}
         resizeMode="contain"
         tintColor={color}
         className="w-6 h-6"
       />
+      <Text
+        className={`${focused ? "font-pbold" : "font-pregular"} text-xs`}
+        style={{ color: color }}
+      >
+        {name}
+      </Text>
     </View>
   );
 };
@@ -20,7 +25,19 @@ const TabIcon = ({ name, icon, color, focused }) => {
 const TabLayout = () => {
   return (
     <>
-      <Tabs>
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: "#FFA001",
+          tabBarInactiveTintColor: "#CDCDE0",
+          tabBarStyle: {
+            backgroundColor: "#161622",
+            borderTopWidth: 1,
+            borderTopColor: "#232533",
+            height: 90,
+          },
+        }}
+      >
         <Tabs.Screen
           name="home"
           options={{
@@ -41,9 +58,9 @@ const TabLayout = () => {
             title: "Create",
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.upload}
+                icon={icons.plus}
                 color={color}
-                name="Upload"
+                name="Create"
                 focused={focused}
               />
             ),
@@ -57,7 +74,7 @@ const TabLayout = () => {
               <TabIcon
                 icon={icons.bookmark}
                 color={color}
-                name="bookmark"
+                name="Bookmarks"
                 focused={focused}
               />
             ),
@@ -71,7 +88,7 @@ const TabLayout = () => {
               <TabIcon
                 icon={icons.profile}
                 color={color}
-                name="profile"
+                name="Profile"
                 focused={focused}
               />
             ),
