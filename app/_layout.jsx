@@ -3,9 +3,16 @@ import { Stack } from "expo-router";
 import { SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
 
+SplashScreen.preventAutoHideAsync();
+
 const RootLayout = () => {
   const [fontLoaded, error] = useFonts({
     "Poppins-Black": require("../fonts/Poppins-Black.ttf"),
+    "Poppins-Bold": require("../fonts/Poppins-Bold.ttf"),
+    "Poppins-ExtraBold": require("../fonts/Poppins-ExtraBold.ttf"),
+    "Poppins-ExtraLight": require("../fonts/Poppins-ExtraLight.ttf"),
+    "Poppins-Light": require("../fonts/Poppins-Light.ttf"),
+    "Poppins-Medium": require("../fonts/Poppins-Medium.ttf"),
   });
 
   useEffect(() => {
@@ -13,7 +20,7 @@ const RootLayout = () => {
     if (useFonts) SplashScreen.hideAsync();
   }, [error]);
 
-  if (!error) return null;
+  if (!fontLoaded && !error) return null;
 
   return (
     <Stack>
