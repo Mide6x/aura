@@ -4,7 +4,7 @@ import React from "react";
 const profile = () => {
   return (
     <View className=" flex-1 justify-center items-center bg-white">
-      <Text>profile</Text>
+      <Text style={{ color: "blue" }}>profile</Text>
     </View>
   );
 };
