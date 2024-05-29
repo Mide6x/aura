@@ -17,7 +17,7 @@ const ClickinButton = ({
       }`}
       disabled={isLoading}
     >
-      <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>
+      <Text className={`text-primary font-bold text-lg ${textStyles}`}>
         {title}
       </Text>
 
