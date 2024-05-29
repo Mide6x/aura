@@ -12,9 +12,19 @@ const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const submit = async () => {
     if (!form.username || !form.email || !form.password) {
       Alert.alert("Sign Up Error 🥲", "Please fill in all the fields");
+    }
+
+    if (!validateEmail(form.email)) {
+      Alert.alert("Sign Up Error 🥲", "Please enter a valid email address");
+      return;
     }
     setIsSubmitting(true);
 
