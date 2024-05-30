@@ -1,16 +1,35 @@
-import { FlatList, StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  RefreshControl,
+} from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "../../constants";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
+import Empty from "../../components/Empty";
 
 const Home = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    //recall posts/ videos
+
+    setRefreshing(false);
+  };
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]} //shows a list of items
+        data={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]}
+        //data={[]} //shows a list of items
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Text className="text-3xl text-white">{item.id}</Text>
@@ -47,6 +66,16 @@ const Home = () => {
             </View>
           </View>
         )}
+        ListEmptyComponent={() => (
+          <Empty
+            title="Aw,there are currently no video uploads, please refresh now or
+        try again later. 😔"
+            subtitle="Or be the first to upload a video? 🤭"
+          />
+        )}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </SafeAreaView>
   );
