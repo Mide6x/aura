@@ -6,16 +6,32 @@ import {
   Image,
   RefreshControl,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "../../constants";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import Empty from "../../components/Empty";
+import { Try } from "expo-router/build/views/Try";
 
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(async () => {
+    const fetchData = async () => {
+      setIsLoading(true);
+    };
+
+    try {
+    } catch (error) {
+      throw new Error(error);
+    }
+
+    fetchData();
+  }, []);
 
   const onRefresh = async () => {
     setRefreshing(true);
